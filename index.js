@@ -187,8 +187,48 @@ function replaceVowels(string, character) {
   return result;
 }
 // Longest word: Write a program that takes in a string and returns the longest word in the string.
-function longestWord(string) {}
+function longestWord(string) {
+  const wordsStr = string.split(" ");
+  let result = "";
+
+  for (let i = 0; i < wordsStr.length; i++) {
+    if (wordsStr[i].length > result.length) {
+       result = wordsStr[i]; // Replace vowel with given character
+          } 
+        }
+        return result;
+}
+//console.log(longestWord("I am a student")); // student
+
 // Text analyzer: Write a program that takes in a string and returns the number of characters, words, and sentences in the string.
-function textAnalyzer(string) {}
+function textAnalyzer(string) {
+  const lettStr = string.split(""); // splits into characters
+  const wordsStr = string.trim().split(" "); // splits into words by space
+  const senStr = string.split(/[.!?]/).filter(s => s.trim().length > 0); // splits into sentences
+
+  const count = {}; // this will store the results
+
+  count.characters = lettStr.length;
+  count.words = wordsStr.length;
+  count.sentences = senStr.length;
+
+  return count;
+}
+
 // Letter change: Write a program that takes in a string and changes each letter to the next letter in the alphabet.
-function letterChange(string) {}
+function letterChange(string) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  let result = "";
+
+  const stringLow = string.toLowerCase();
+  for (let i = 0; i < stringLow.length; i++) {
+    const currentChar = stringLow[i];
+    if (alphabet.includes(currentChar)) {
+      let nextChar = alphabet[(alphabet.indexOf(currentChar) + 1) % 26]; // Wrap around using modulo
+      result += nextChar; 
+    } else {
+      result += currentChar; // Add non-alphabetic characters (spaces, punctuation) unchanged
+    }
+  }
+  return result;
+}
